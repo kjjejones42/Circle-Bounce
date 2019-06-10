@@ -4,7 +4,6 @@
 
 int main()
 {	
-	Message* message = Message::getInstance();
 	Settings* settings = Settings::getInstance();
 	CircleContainer container = CircleContainer(settings->minNumObjects);
 
@@ -54,17 +53,17 @@ int main()
 						case sf::Keyboard::W:
 							container.setWrap(!container.getWrap());
 							container.resizedWindow(false);
-							message->setMessage("Wrapping: " + boolToText(container.getWrap()));
+							container.message.setMessage("Wrapping: " + boolToText(container.getWrap()));
 							break;
 
 						case sf::Keyboard::D:
 							container.setDraw(!container.getDraw());
-							message->setMessage("Trails: " + boolToText(!container.getDraw()));
+							container.message.setMessage("Trails: " + boolToText(!container.getDraw()));
 							break;
 
 						case sf::Keyboard::R:
 							container.setRandomPosition();
-							message->setMessage("Positions randomised");
+							container.message.setMessage("Positions randomised");
 							break;
 					}
 					break;

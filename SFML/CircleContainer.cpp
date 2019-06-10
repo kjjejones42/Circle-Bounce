@@ -5,7 +5,7 @@
 #include <thread>
 #include <iostream>
 
-CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message::getInstance())
+CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message())
 {
 	m_opacity = settings->initialOpacity;
 	m_draw = settings->initialDraw;
@@ -43,7 +43,7 @@ void CircleContainer::resize()
 	{
 		(*circlesArray)[i].resize();
 	}
-	message->setMessage("Size: " + std::to_string(getDiameter()) + "px");
+	message.setMessage("Size: " + std::to_string(getDiameter()) + "px");
 }
 
 void CircleContainer::resizedWindow(bool windowResize)
@@ -81,7 +81,7 @@ void CircleContainer::update()
 	{
 		updateSection(0, 4);
 	}
-	message->update();
+	message.update();
 	
 }
 
@@ -121,7 +121,7 @@ void CircleContainer::changeOpacity(int difference)
 		{
 			(*circlesArray)[i].updateOpacity();
 		}
-		message->setMessage("Opacity: " + std::to_string(getOpacity()) + "%");
+		message.setMessage("Opacity: " + std::to_string(getOpacity()) + "%");
 	}
 }
 

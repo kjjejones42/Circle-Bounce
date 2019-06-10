@@ -12,13 +12,12 @@ class CircleContainer : public sf::Drawable
 		{
 			target.draw((*circlesArray)[i], states);
 		}
-		target.draw(*message, states);
+		target.draw(message, states);
 	}
 	std::vector<Circle>* circlesArray;
 	Settings *settings;	
 	int m_count;
 	bool m_loaded = false;
-	Message *message = nullptr;
 	int m_opacity;
 	bool m_wrap;
 	bool m_draw;
@@ -34,7 +33,8 @@ class CircleContainer : public sf::Drawable
 public:	
 	CircleContainer(int c_count);   
 
-	Message* getMessageHandler() { return message; }
+
+	Message message;
 	void setWrap(bool wrap) { m_wrap = wrap; };
 	bool getWrap() { return m_wrap; }
 	void setDraw(bool draw) { m_draw = draw; }

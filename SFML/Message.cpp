@@ -22,13 +22,6 @@ Message::Message() : settings(Settings::getInstance())
 	messageTimer = std::chrono::high_resolution_clock::now();
 }
 
-Message* Message::getInstance()
-{
-	if (!m_instance)
-		m_instance = new Message();
-	return m_instance;
-}
-
 
 void Message::recalcBackgroundSize()
 {
@@ -78,5 +71,3 @@ void Message::update()
 
 	}
 }
-
-Message* Message::m_instance = nullptr;
