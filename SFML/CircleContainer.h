@@ -19,6 +19,7 @@ class CircleContainer : public sf::Drawable
 	int m_count;
 	bool m_loaded = false;
 	Message *message = nullptr;
+	int m_opacity;
 
 public:	
 	CircleContainer(int c_count);
@@ -33,6 +34,8 @@ public:
 	void move(float x, float y);
 	void setRandomPosition();
 	void changeOpacity(int difference);
+	int getOpacity() { return m_opacity; }
+	void setOpacity(int opacity) { m_opacity = opacity; }
 	
 	~CircleContainer();
 };

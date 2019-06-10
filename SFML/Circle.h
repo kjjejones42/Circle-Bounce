@@ -12,10 +12,12 @@ class Circle : public sf::CircleShape
 	sf::Vector2f momentum;
 	bool loading;
 	double loadProgress;
-	CircleContainer* parent;
+	CircleContainer* const parent;
+	void init(CircleContainer* const c_parent);
 
-public:		
-	Circle(CircleContainer* c_parent = nullptr);
+public:
+	Circle();
+	Circle(CircleContainer* const c_parent);
 	void updateOpacity();
 	bool isInValidArea();
 	void setRandomPosition();

@@ -3,11 +3,14 @@
 #include "CircleContainer.h"
 #include <vector>
 #include <thread>
+#include <iostream>
 
 CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message::getInstance())
 {
+	m_opacity = settings->initialOpacity;
 	m_count = c_count;
-	circlesArray = new std::vector<Circle>(m_count);
+	circlesArray = new std::vector<Circle>;
+	circlesArray->push_back(Circle(this));
 	circlesArray->reserve(settings->maxNumObjects);
 	m_loaded = true;
 }
@@ -54,9 +57,8 @@ void CircleContainer::resizedWindow(bool windowResize)
 void CircleContainer::update()
 {
 	if (m_count < settings->maxNumObjects)
-	{
+	{		
 		m_count += settings->numObjectsChange;
-		circlesArray->resize(m_count);
 		for (int i = 0; i < settings->numObjectsChange; i++)
 		{
 			circlesArray->push_back(Circle(this));
@@ -110,14 +112,14 @@ void CircleContainer::setRandomPosition()
 
 void CircleContainer::changeOpacity(int difference)
 {
-	if (!((settings->opacity + difference < 1) || (settings->opacity + difference > 100)))
+	if (!((getOpacity() + difference < 1) || (getOpacity() + difference > 100)))
 	{
-		settings->opacity += difference;
+		setOpacity(getOpacity() + difference);
 		for (int i = 0; i < m_count; i++)
 		{
 			(*circlesArray)[i].updateOpacity();
 		}
-		message->setMessage("Opacity: " + std::to_string(settings->opacity) + "%");
+		message->setMessage("Opacity: " + std::to_string(getOpacity()) + "%");
 	}
 }
 

@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Circle.h"
+#include "CircleContainer.h"
+#include <iostream>
 
-Circle::Circle(CircleContainer* c_parent) : settings(Settings::getInstance()), parent(c_parent), loading(true), loadProgress(0.0)
-{	
+void Circle::init(CircleContainer* const c_parent)
+{
 	double angle = (settings->getRandom(0, 360)) * 3.14f / 180.f;
 	double speed = (settings->getRandom(0, settings->maxMomentum)) + settings->minSpeed;
 	momentum = sf::Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
@@ -15,6 +17,17 @@ Circle::Circle(CircleContainer* c_parent) : settings(Settings::getInstance()), p
 	sf::Color color = settings->randColor();
 	setFillColor(color);
 	updateOpacity();
+}
+
+Circle::Circle(CircleContainer* const c_parent) : settings(Settings::getInstance()), parent(c_parent), loading(true), loadProgress(0.0)
+{	
+	init(c_parent);
+
+}
+
+Circle::Circle() : settings(Settings::getInstance()), parent(nullptr), loading(true), loadProgress(0.0)
+{
+	init(nullptr);
 }
 
 bool Circle::isInValidArea()
@@ -131,6 +144,6 @@ void Circle::resizedWindow(bool windowResize){
 void Circle::updateOpacity()
 {
 	sf::Color color = getFillColor();
-	color.a = static_cast<unsigned int>(255.0 / 100.0 * (double)settings->opacity * loadProgress);
+	color.a = static_cast<unsigned int>(255.0 / 100.0 * (double)parent->getOpacity() * loadProgress);
 	setFillColor(color);	
 }

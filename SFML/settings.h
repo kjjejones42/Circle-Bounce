@@ -34,10 +34,10 @@ public:
 	const int messageDuration = 1;
 	const int maxMomentum = 5;
 	const double minSpeed = 1.0;
+	const int initialOpacity = 50;
 	
-	int opacity = 50;
 	bool draw = true;
-	bool wrap = false;		
+	bool wrap = true;		
 	std::chrono::time_point<clock_t> m_beg;
 
 	struct {
