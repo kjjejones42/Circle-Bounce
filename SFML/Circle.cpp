@@ -2,7 +2,7 @@
 
 #include "Circle.h"
 
-Circle::Circle() : settings(Settings::getInstance()), loading(true), loadProgress(0.0)
+Circle::Circle(CircleContainer* c_parent) : settings(Settings::getInstance()), parent(c_parent), loading(true), loadProgress(0.0)
 {	
 	double angle = (settings->getRandom(0, 360)) * 3.14f / 180.f;
 	double speed = (settings->getRandom(0, settings->maxMomentum)) + settings->minSpeed;

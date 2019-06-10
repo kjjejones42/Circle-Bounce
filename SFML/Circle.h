@@ -4,15 +4,18 @@
 #include <chrono>
 #include "settings.h"
 
+class CircleContainer;
+
 class Circle : public sf::CircleShape
 {
 	Settings *settings ;
 	sf::Vector2f momentum;
 	bool loading;
-	double loadProgress;	
+	double loadProgress;
+	CircleContainer* parent;
 
 public:		
-	Circle();
+	Circle(CircleContainer* c_parent = nullptr);
 	void updateOpacity();
 	bool isInValidArea();
 	void setRandomPosition();

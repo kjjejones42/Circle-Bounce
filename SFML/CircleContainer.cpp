@@ -59,7 +59,7 @@ void CircleContainer::update()
 		circlesArray->resize(m_count);
 		for (int i = 0; i < settings->numObjectsChange; i++)
 		{
-			circlesArray->push_back(Circle());
+			circlesArray->push_back(Circle(this));
 		}
 	}
 	if (settings->multithreading)
