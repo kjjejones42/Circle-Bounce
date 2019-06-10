@@ -20,12 +20,22 @@ class CircleContainer : public sf::Drawable
 	bool m_loaded = false;
 	Message *message = nullptr;
 	int m_opacity;
+	bool m_wrap;
+	bool m_draw;
 
 public:	
-	CircleContainer(int c_count);
+	CircleContainer(int c_count);   
 
 	Message* getMessageHandler() { return message; }
+	void setWrap(bool wrap) { m_wrap = wrap; };
+	bool getWrap() { return m_wrap; }
+	void setDraw(bool draw) { m_draw = draw; }
+	bool getDraw() { return m_draw; }
+	void setOpacity(int opacity) { m_opacity = opacity; }
+	int getOpacity() { return m_opacity; }
+
 	bool getLoaded() { return m_loaded; }
+
 	void changeCircleSize(int num);
 	void resize();
 	void resizedWindow(bool windowResize);
@@ -34,8 +44,6 @@ public:
 	void move(float x, float y);
 	void setRandomPosition();
 	void changeOpacity(int difference);
-	int getOpacity() { return m_opacity; }
-	void setOpacity(int opacity) { m_opacity = opacity; }
 	
 	~CircleContainer();
 };

@@ -2,11 +2,6 @@
 
 #include "main.h"
 
-std::string boolToText(bool input)
-{
-	return input ? "On" : "Off";
-}
-
 int main()
 {	
 	Message* message = Message::getInstance();
@@ -21,7 +16,7 @@ int main()
 	while (window.isOpen())		
 	{
 		settings->resetTimer();
-		if (settings->draw)
+		if (container.getDraw())
 		{
 			window.clear(sf::Color::Black);
 		}		
@@ -57,14 +52,14 @@ int main()
 					switch (event.key.code)
 					{
 						case sf::Keyboard::W:
-							settings->wrap = !settings->wrap;
+							container.setWrap(!container.getWrap());
 							container.resizedWindow(false);
-							message->setMessage("Wrapping: " + boolToText(settings->wrap));
+							message->setMessage("Wrapping: " + boolToText(container.getWrap()));
 							break;
 
 						case sf::Keyboard::D:
-							settings->draw = !settings->draw;
-							message->setMessage("Trails: " + boolToText(!settings->draw));
+							container.setDraw(!container.getDraw());
+							message->setMessage("Trails: " + boolToText(!container.getDraw()));
 							break;
 
 						case sf::Keyboard::R:
@@ -102,4 +97,9 @@ int main()
 		window.display();
 	}
 	return 0;
+}
+
+std::string boolToText(bool input)
+{
+	return input ? "On" : "Off";
 }

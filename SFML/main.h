@@ -5,3 +5,4 @@
 #include "CircleContainer.h"
 
 int main();
+std::string boolToText(bool input);

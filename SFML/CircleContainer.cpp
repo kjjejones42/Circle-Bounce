@@ -8,6 +8,8 @@
 CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message::getInstance())
 {
 	m_opacity = settings->initialOpacity;
+	m_draw = settings->initialDraw;
+	m_wrap = settings->initialWrap;
 	m_count = c_count;
 	circlesArray = new std::vector<Circle>;
 	circlesArray->push_back(Circle(this));

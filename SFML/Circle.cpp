@@ -70,7 +70,7 @@ void Circle::update()
 	double radius = settings->getRadius();
 	sf::Vector2f position = getPosition();
 
-	if (settings->wrap)
+	if (parent->getWrap())
 	{
 		// If wrap setting is selected, ensures that the object's position wraps around
 		position.x += settings->window.x + settings->getDiameter();
@@ -126,7 +126,7 @@ void Circle::resizedWindow(bool windowResize){
 			setPosition(position.x + offsetX, position.y + offsetY);
 		}
 		else
-			if (settings->wrap)
+			if (parent->getWrap())
 			{
 				setRandomPosition();				
 			}
