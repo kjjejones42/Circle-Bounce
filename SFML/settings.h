@@ -12,12 +12,8 @@ class Settings
 	static Settings* m_instance;	
 	std::mt19937 m_mersenne;
 	std::uniform_real_distribution<> m_rand;
-	int m_diameter = 50;
-	double m_radius = static_cast<double>(m_diameter) / 2;
 	float hue2rgb(float t);
-
 	static int seed;
-	
 	Settings();
 
 public:	
@@ -44,15 +40,7 @@ public:
 		int x = 1280;
 		int y = 720;
 	} window;
-	struct {
-		int min = 1;
-		int max = 720;
-	} diameterRange;
-
-	void setDiameter(int n_diam);
-	int getDiameter() { return m_diameter; }
-	double getRadius() { return m_radius; }
-	int setResizeRange();
+		
 	double getRandom(float min, float max);
 	void resetTimer();
 	double elapsed() const;

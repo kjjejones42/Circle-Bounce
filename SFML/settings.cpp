@@ -27,20 +27,6 @@ Settings* Settings::getInstance() {
 	return m_instance;
 }
 
-void Settings::setDiameter(int n_diam)
-{
-	m_diameter = n_diam;
-	m_radius = (float)n_diam / 2;
-}
-int Settings::setResizeRange()
-{
-	diameterRange.max = (window.x > window.y ? window.y : window.x) - 1;
-	if (m_diameter > diameterRange.max)
-	{
-		setDiameter(diameterRange.max);
-	}
-	return diameterRange.max;
-}
 void Settings::resetTimer()
 {
 	m_beg = clock_t::now();

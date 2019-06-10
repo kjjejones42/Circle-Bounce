@@ -10,8 +10,8 @@ void Circle::init(CircleContainer* const c_parent)
 	double speed = (settings->getRandom(0, settings->maxMomentum)) + settings->minSpeed;
 	momentum = sf::Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
 
-	setRadius(settings->getRadius());
-	setOrigin(settings->getRadius(), settings->getRadius());
+	setRadius(parent->getRadius());
+	setOrigin(parent->getRadius(), parent->getRadius());
 	setRandomPosition();
 
 	sf::Color color = settings->randColor();
@@ -33,21 +33,21 @@ Circle::Circle() : settings(Settings::getInstance()), parent(nullptr), loading(t
 bool Circle::isInValidArea()
 {
 	sf::Vector2f position = getPosition();
-	double radius = loadProgress * settings->getRadius();
+	double radius = loadProgress * parent->getRadius();
 	return !(position.x < radius || position.y < radius || position.x >(settings->window.x - radius) || position.y >(settings->window.y - radius));
 }
 
 void Circle::setRandomPosition()
 {
 	setPosition(
-		settings->getRandom(0, settings->window.x - loadProgress * settings->getDiameter()) + loadProgress * settings->getRadius(),
-		settings->getRandom(0,settings->window.y - loadProgress * settings->getDiameter()) + loadProgress * settings->getRadius()
+		settings->getRandom(0, settings->window.x - loadProgress * parent->getDiameter()) + loadProgress * parent->getRadius(),
+		settings->getRandom(0,settings->window.y - loadProgress * parent->getDiameter()) + loadProgress * parent->getRadius()
 	);
 }
 void Circle::resize()
 {
-	setRadius(settings->getRadius() * loadProgress);
-	setOrigin(settings->getRadius() * loadProgress, settings->getRadius() * loadProgress);
+	setRadius(parent->getRadius() * loadProgress);
+	setOrigin(parent->getRadius() * loadProgress, parent->getRadius() * loadProgress);
 	if (!isInValidArea())
 	{
 		resizedWindow(false);
@@ -67,17 +67,17 @@ void Circle::update()
 		resize();
 	}
 	
-	double radius = settings->getRadius();
+	double radius = parent->getRadius();
 	sf::Vector2f position = getPosition();
 
 	if (parent->getWrap())
 	{
 		// If wrap setting is selected, ensures that the object's position wraps around
-		position.x += settings->window.x + settings->getDiameter();
-		position.y += settings->window.y + settings->getDiameter();
+		position.x += settings->window.x + parent->getDiameter();
+		position.y += settings->window.y + parent->getDiameter();
 		setPosition(
-			fmod(position.x + settings->getRadius(), settings->window.x + settings->getDiameter()) - settings->getRadius(),
-			fmod(position.y + settings->getRadius(), settings->window.y + settings->getDiameter()) - settings->getRadius()
+			fmod(position.x + parent->getRadius(), settings->window.x + parent->getDiameter()) - parent->getRadius(),
+			fmod(position.y + parent->getRadius(), settings->window.y + parent->getDiameter()) - parent->getRadius()
 		);
 	}
 	else
@@ -107,7 +107,7 @@ void Circle::update()
 }
 void Circle::resizedWindow(bool windowResize){
 
-	double radius = settings->getRadius();
+	double radius = parent->getRadius();
 	int windowX = settings->window.x;
 	int windowY = settings->window.y;
 
@@ -117,8 +117,8 @@ void Circle::resizedWindow(bool windowResize){
 		sf::Vector2f position = getPosition();
 		if (windowResize)
 		{
-			position.x = fmod((position.x), (windowX - settings->getDiameter()));
-			position.y = fmod((position.y), (windowY - settings->getDiameter()));
+			position.x = fmod((position.x), (windowX - parent->getDiameter()));
+			position.y = fmod((position.y), (windowY - parent->getDiameter()));
 
 			float offsetX = position.x > (windowX - radius) ? -radius : (position.x < radius ? radius : 0.f);
 			float offsetY = position.y > (windowY - radius) ? -radius : (position.y < radius ? radius : 0.f);

@@ -23,6 +23,14 @@ class CircleContainer : public sf::Drawable
 	bool m_wrap;
 	bool m_draw;
 
+	int m_diameter = 50;
+	double m_radius = static_cast<double>(m_diameter) / 2;
+
+	struct {
+		int min = 1;
+		int max = 720;
+	} diameterRange;
+
 public:	
 	CircleContainer(int c_count);   
 
@@ -33,7 +41,7 @@ public:
 	bool getDraw() { return m_draw; }
 	void setOpacity(int opacity) { m_opacity = opacity; }
 	int getOpacity() { return m_opacity; }
-
+	double getRadius() { return m_radius; }
 	bool getLoaded() { return m_loaded; }
 
 	void changeCircleSize(int num);
@@ -44,6 +52,11 @@ public:
 	void move(float x, float y);
 	void setRandomPosition();
 	void changeOpacity(int difference);
+
+
+	void setDiameter(int n_diam);
+	int getDiameter() { return m_diameter; }
+	int setResizeRange();
 	
 	~CircleContainer();
 };

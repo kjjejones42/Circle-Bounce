@@ -21,17 +21,17 @@ void CircleContainer::changeCircleSize(int num)
 {
 	if (m_loaded && num != 0)
 	{
-		if ((settings->getDiameter() < settings->diameterRange.min && num < 0) || settings->getDiameter() + num < settings->diameterRange.min)
+		if ((getDiameter() < diameterRange.min && num < 0) || getDiameter() + num < diameterRange.min)
 		{
-			settings->setDiameter(settings->diameterRange.min);
+			setDiameter(diameterRange.min);
 		}
-		else if ((settings->getDiameter() > settings->diameterRange.max && num > 0) || settings->getDiameter() + num > settings->diameterRange.max)
+		else if ((getDiameter() > diameterRange.max && num > 0) || getDiameter() + num > diameterRange.max)
 		{
-			settings->setDiameter(settings->diameterRange.max);
+			setDiameter(diameterRange.max);
 		}
 		else
 		{
-			settings->setDiameter(settings->getDiameter() + num);
+			setDiameter(getDiameter() + num);
 		}
 		resize();
 	}
@@ -43,12 +43,12 @@ void CircleContainer::resize()
 	{
 		(*circlesArray)[i].resize();
 	}
-	message->setMessage("Size: " + std::to_string(settings->getDiameter()) + "px");
+	message->setMessage("Size: " + std::to_string(getDiameter()) + "px");
 }
 
 void CircleContainer::resizedWindow(bool windowResize)
 {
-	settings->setResizeRange();
+	setResizeRange();
 	for (int i = 0; i < m_count; i++)
 	{
 		(*circlesArray)[i].resizedWindow(windowResize);
@@ -124,6 +124,23 @@ void CircleContainer::changeOpacity(int difference)
 		message->setMessage("Opacity: " + std::to_string(getOpacity()) + "%");
 	}
 }
+
+
+void CircleContainer::setDiameter(int n_diam)
+{
+	m_diameter = n_diam;
+	m_radius = (float)n_diam / 2;
+}
+int CircleContainer::setResizeRange()
+{
+	diameterRange.max = (settings->window.x > settings->window.y ? settings->window.y : settings->window.x) - 1;
+	if (m_diameter > diameterRange.max)
+	{
+		setDiameter(diameterRange.max);
+	}
+	return diameterRange.max;
+}
+
 
 CircleContainer::~CircleContainer()
 {
