@@ -4,8 +4,12 @@
 #include "CircleContainer.h"
 #include <iostream>
 
-void Circle::init(CircleContainer* const c_parent)
+void Circle::init()
 {
+	loadProgress = 0.0;
+	loading = true;
+	settings = Settings::getInstance();
+
 	double angle = (settings->getRandom(0, 360)) * 3.14f / 180.f;
 	double speed = (settings->getRandom(0, settings->maxMomentum)) + settings->minSpeed;
 	momentum = sf::Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
@@ -19,15 +23,15 @@ void Circle::init(CircleContainer* const c_parent)
 	updateOpacity();
 }
 
-Circle::Circle(CircleContainer* const c_parent) : settings(Settings::getInstance()), parent(c_parent), loading(true), loadProgress(0.0)
+Circle::Circle(CircleContainer* const c_parent) : parent(c_parent)
 {	
-	init(c_parent);
+	init();
 
 }
 
-Circle::Circle() : settings(Settings::getInstance()), parent(nullptr), loading(true), loadProgress(0.0)
+Circle::Circle() : parent(nullptr)
 {
-	init(nullptr);
+	init();
 }
 
 bool Circle::isInValidArea()

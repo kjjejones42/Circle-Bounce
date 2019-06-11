@@ -32,8 +32,7 @@ class CircleContainer : public sf::Drawable
 
 public:	
 	CircleContainer(int c_count);   
-
-
+	
 	Message message;
 	void setWrap(bool wrap) { m_wrap = wrap; };
 	bool getWrap() { return m_wrap; }
@@ -52,8 +51,7 @@ public:
 	void move(float x, float y);
 	void setRandomPosition();
 	void changeOpacity(int difference);
-
-
+	
 	void setDiameter(int n_diam);
 	int getDiameter() { return m_diameter; }
 	int setResizeRange();

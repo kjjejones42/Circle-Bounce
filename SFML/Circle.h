@@ -13,7 +13,7 @@ class Circle : public sf::CircleShape
 	bool loading;
 	double loadProgress;
 	CircleContainer* const parent;
-	void init(CircleContainer* const c_parent);
+	void init();
 
 public:
 	Circle();
