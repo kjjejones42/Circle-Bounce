@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <random> 
 #include <chrono>
+#include "cScreen.h"
 
 class Settings
 {
@@ -34,6 +35,7 @@ public:
 	const bool initialDraw = true;
 	const bool initialWrap = true;
 	const int initialDiameter = 50;
+	const cScreen::screenName initialScreen = cScreen::SIMULATION;
 	std::chrono::time_point<clock_t> m_beg;
 
 	struct {
