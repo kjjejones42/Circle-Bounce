@@ -5,9 +5,8 @@
 Message::Message() : settings(Settings::getInstance())
 {
 	messageDuration = std::chrono::duration<int>(settings->messageDuration);
-	font.loadFromMemory(fontNameSpace::fontArray, fontNameSpace::font_length);
 
-	text = sf::Text("", font);
+	text = sf::Text("", settings->font);
 	text.setScale(0.66, 0.66);
 	text.setFillColor(sf::Color::White);
 	text.setLetterSpacing(0.9);

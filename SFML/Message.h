@@ -9,7 +9,6 @@ class Message : public sf::Drawable
 	using clock_t = std::chrono::high_resolution_clock;
 	using second_t = std::chrono::duration<double, std::ratio<1, 1> >;
 
-	sf::Font font;
 	sf::Text text;
 	sf::RectangleShape textBackground;
 	Settings *settings;

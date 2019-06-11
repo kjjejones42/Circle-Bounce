@@ -21,6 +21,8 @@ public:
 
 	static Settings *getInstance();
 
+
+	sf::Font font;
 	const bool multithreading = false;
 	const bool vSync = true;
 	const int opacityChange = 1;
@@ -46,6 +48,6 @@ public:
 	double getRandom(float min, float max);
 	void resetTimer();
 	double elapsed() const;
-	sf::Color randColor();
+	sf::Color randColor(float h);
 	void updateSeed();
 };

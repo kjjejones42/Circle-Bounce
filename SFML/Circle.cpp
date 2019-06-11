@@ -18,7 +18,7 @@ void Circle::init()
 	setOrigin(parent->getRadius(), parent->getRadius());
 	setRandomPosition();
 
-	sf::Color color = settings->randColor();
+	sf::Color color = settings->randColor(settings->getRandom(0,1));
 	setFillColor(color);
 	updateOpacity();
 }

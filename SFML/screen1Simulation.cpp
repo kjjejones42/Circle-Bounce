@@ -62,6 +62,9 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 					container.setRandomPosition();
 					container.message.setMessage("Positions randomised");
 					break;
+				
+				case sf::Keyboard::Escape:
+					return cScreen::START;
 				}
 				break;
 			}

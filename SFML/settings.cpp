@@ -1,12 +1,15 @@
 #pragma once
 
 #include "settings.h"
+#include "font.h"
 
 Settings::Settings() :
 	m_mersenne(std::mt19937(static_cast<std::mt19937::result_type>(std::chrono::system_clock::now().time_since_epoch().count()))),
 	m_rand(std::uniform_real_distribution<>(0, 1)),
 	m_beg(clock_t::now())
-{}
+{
+	font.loadFromMemory(fontNameSpace::fontArray, fontNameSpace::font_length);
+}
 
 void Settings::updateSeed()
 {
@@ -48,8 +51,7 @@ float Settings::hue2rgb(float t)
 	return 0.0;
 }
 
-sf::Color Settings::randColor() {
-	float h = getRandom(0, 1);
+sf::Color Settings::randColor(float h) {
 	int r = std::floor(255 * hue2rgb(h + (1.0 / 3.0)));
 	int g = std::floor(255 * hue2rgb(h));
 	int b = std::floor(255 * hue2rgb(h - (1.0 / 3.0)));
