@@ -33,7 +33,10 @@
     <ClCompile Include="font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="screen0Simulation.cpp">
+    <ClCompile Include="screen1Simulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="screen0Start.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,7 +65,10 @@
     <ClInclude Include="cScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="screen0Simulation.h">
+    <ClInclude Include="screen1Simulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="screen0Start.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

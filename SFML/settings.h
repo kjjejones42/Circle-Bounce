@@ -35,7 +35,7 @@ public:
 	const bool initialDraw = true;
 	const bool initialWrap = true;
 	const int initialDiameter = 50;
-	const cScreen::screenName initialScreen = cScreen::SIMULATION;
+	const cScreen::screenName initialScreen = cScreen::START;
 	std::chrono::time_point<clock_t> m_beg;
 
 	struct {

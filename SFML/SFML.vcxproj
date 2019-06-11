@@ -133,7 +133,8 @@
     <ClCompile Include="font.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Message.cpp" />
-    <ClCompile Include="screen0Simulation.cpp" />
+    <ClCompile Include="screen0Start.cpp" />
+    <ClCompile Include="screen1Simulation.cpp" />
     <ClCompile Include="settings.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +143,8 @@
     <ClInclude Include="CircleContainer.h" />
     <ClInclude Include="cScreen.h" />
     <ClInclude Include="Message.h" />
-    <ClInclude Include="screen0Simulation.h" />
+    <ClInclude Include="screen0Start.h" />
+    <ClInclude Include="screen1Simulation.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />

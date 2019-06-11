@@ -2,14 +2,18 @@
 
 #include "main.h"
 #include "cScreen.h"
-#include "screen0Simulation.h"
+#include "screen0Start.h"
+#include "screen1Simulation.h"
 
 int main()
 {
 	std::vector<cScreen*> Screens;
 	Screens.resize(cScreen::NUM_OF_SCREENS);
 
-	screen0Simulation s1;
+	screen0Start s0;
+	Screens[cScreen::START] = &s0;
+
+	screen1Simulation s1;
 	Screens[cScreen::SIMULATION] = &s1;
 		
 	Settings* settings = Settings::getInstance();

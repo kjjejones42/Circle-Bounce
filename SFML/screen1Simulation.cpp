@@ -1,10 +1,10 @@
 #pragma once
 
-#include "screen0Simulation.h"
+#include "screen1Simulation.h"
 #include "cScreen.h"
 
 
-int screen0Simulation::Run(sf::RenderWindow &window)
+int screen1Simulation::Run(sf::RenderWindow &window)
 {
 
 	Settings* settings = Settings::getInstance();

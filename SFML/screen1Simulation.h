@@ -7,9 +7,9 @@
 
 std::string boolToText(bool input);
 
-class screen0Simulation : public cScreen
+class screen1Simulation : public cScreen
 {
 public:
-	screen0Simulation(void) {};
+	screen1Simulation(void) {};
 	virtual int Run(sf::RenderWindow &window);
 };
