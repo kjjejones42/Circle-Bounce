@@ -78,11 +78,7 @@ int screen0Start::Run(sf::RenderWindow &window)
 
 	while (true)
 	{
-		sf::RectangleShape rectangle;
-		rectangle.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
-		rectangle.setPosition(0, 0);
-		rectangle.setFillColor(sf::Color(0u,0u,0u,(unsigned int)(255*0.95)));
-		window.clear(settings->randColor(std::fmod(randColor += 0.001, 1.0)));
+		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -106,7 +102,6 @@ int screen0Start::Run(sf::RenderWindow &window)
 				}
 			}
 		}
-		window.draw(rectangle);
 		window.draw(title);
 		window.display();
 	}

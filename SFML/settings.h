@@ -13,7 +13,7 @@ class Settings
 	static Settings* m_instance;	
 	std::mt19937 m_mersenne;
 	std::uniform_real_distribution<> m_rand;
-	float hue2rgb(float t);
+	float hue2rgb(float p, float q, float t);
 	static int seed;
 	Settings();
 
@@ -46,6 +46,6 @@ public:
 	double getRandom(float min, float max);
 	void resetTimer();
 	double elapsed() const;
-	sf::Color randColor(float h);
 	void updateSeed();
+	sf::Color hslToRgb(float h, float s, float l);
 };

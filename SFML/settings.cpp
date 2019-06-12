@@ -2,6 +2,7 @@
 
 #include "settings.h"
 #include "font.h"
+#include <iostream>
 
 Settings::Settings() :
 	m_mersenne(std::mt19937(static_cast<std::mt19937::result_type>(std::chrono::system_clock::now().time_since_epoch().count()))),
@@ -40,28 +41,37 @@ double Settings::elapsed() const
 	return std::chrono::duration_cast<second_t>(clock_t::now() - m_beg).count();
 }
 
-
-float Settings::hue2rgb(float t)
+float Settings::hue2rgb(float p, float q, float t)
 {
 	if (t < 0) t += 1.0;
 	if (t > 1) t -= 1.0;
-	if (t < 1.0 / 6.0) return 6.0 * t;
-	if (t < 0.5) return 1.0;
-	if (t < 2.0 / 3.0) return (2.0 / 3.0 - t) * 6.0;
-	return 0.0;
+	if (t < 1.0 / 6.0) return p + (q - p) * 6.0 * t;
+	if (t < 1.0 / 2.0) return q;
+	if (t < 2.0 / 3.0) return p + (q - p) * (2.0 / 3.0 - t) * 6.0;
+	return p;
 }
 
-sf::Color Settings::randColor(float h) {
-	int r = std::floor(255 * hue2rgb(h + (1.0 / 3.0)));
-	int g = std::floor(255 * hue2rgb(h));
-	int b = std::floor(255 * hue2rgb(h - (1.0 / 3.0)));
-	sf::Color color = sf::Color::Color(
-		r < 255 ? r : 255u,
-		g < 255 ? g : 255u,
-		b < 255 ? b : 255u,
-		255u);
-	return color;
+
+sf::Color Settings::hslToRgb(float h, float s, float l)
+{
+	float r, g, b;
+
+	if(s == 0)
+	{
+		r = g = b = l;
+	}
+	else
+	{
+		float q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+		float p = 2 * l - q;
+		r = hue2rgb(p, q, h + 1.0/3.0);
+		g = hue2rgb(p, q, h);
+		b = hue2rgb(p, q, h - 1.0/3.0);
+	}
+	return sf::Color((unsigned int)std::round(r * 255), (unsigned int)std::round(g * 255), (unsigned int)std::round(b * 255));
 }
+
+
 int Settings::seed = 0;
 
 Settings* Settings::m_instance = nullptr;
