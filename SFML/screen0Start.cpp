@@ -35,16 +35,27 @@ public:
 		);
 		text.move(
 			settings->window.x / 2.0,
-			settings->window.y / 4.0 + index * 40
+			0
 		);
 		textArray.push_back(text);
+		calculateVerticalPosition();
 		return *this;
 	}
-	void move(double x, double y)
+	void calculateVerticalPosition()
+	{
+		for (int i = 0, n = textArray.size(); i < n; ++i)
+		{
+			float midpoint = textArray.size() / 2.0f;
+			sf::Vector2f position = textArray[i].getPosition();
+			position.y = settings->window.y / 2.0 + (i - midpoint) * 40;			
+			textArray[i].setPosition(position);
+		}
+	}
+	void move(double x, double y) 
 	{
 		for (sf::Text &text : textArray)
 		{
-			
+
 			text.move(x, y);
 		}
 	}
@@ -87,9 +98,10 @@ int screen0Start::Run(sf::RenderWindow &window)
 				{
 					window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
 					double diffX = (int)event.size.width - settings->window.x;
-					title.move(diffX / 2.0, 0.0);
 					settings->window.x = event.size.width;
 					settings->window.y = event.size.height;
+					title.move(diffX / 2.0, 0.0);
+					title.calculateVerticalPosition();
 					break;
 				}
 			}

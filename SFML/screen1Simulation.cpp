@@ -3,8 +3,7 @@
 #include "screen1Simulation.h"
 #include "cScreen.h"
 
-screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects))
-{}
+screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects)) {}
 
 int screen1Simulation::Run(sf::RenderWindow &window)
 {
@@ -28,7 +27,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 				container.changeCircleSize(event.mouseWheelScroll.delta);
 				break;
 
-				// Redistributes the drawn objects when the window is resized
+			// Redistributes the drawn objects when the window is resized
 			case sf::Event::Resized:
 				if (container.getLoaded())
 				{
@@ -79,11 +78,11 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
-			container.changeOpacity(-settings->opacityChange);
+			container.changeOpacity(-1);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
-			container.changeOpacity(settings->opacityChange);
+			container.changeOpacity(1);
 		}
 
 		if (container.getLoaded())

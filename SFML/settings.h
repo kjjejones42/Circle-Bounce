@@ -19,13 +19,11 @@ class Settings
 
 public:	
 
-	static Settings *getInstance();
-
-
+	static Settings* getInstance();
+	
 	sf::Font font;
 	const bool multithreading = false;
 	const bool vSync = true;
-	const int opacityChange = 1;
 	const int minNumObjects = 0;
 	const int maxNumObjects = 5000;
 	const int numObjectsChange = 10;
