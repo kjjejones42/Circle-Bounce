@@ -33,7 +33,7 @@ public:
 	const double minSpeed = 1.0;
 	const int initialOpacity = 50;	
 	const bool initialDraw = true;
-	const bool initialWrap = true;
+	const bool initialWrap = false;
 	const int initialDiameter = 50;
 	const cScreen::screenName initialScreen = cScreen::START;
 	std::chrono::time_point<clock_t> m_beg;

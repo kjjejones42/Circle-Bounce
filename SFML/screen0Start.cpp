@@ -1,7 +1,6 @@
 #include "screen0Start.h"
 #include "settings.h"
 #include "font.h"
-#include <iostream>
 
 class Title : public sf::Drawable
 {
@@ -85,7 +84,7 @@ int screen0Start::Run(sf::RenderWindow &window)
 			switch (event.type)
 			{
 				case sf::Event::Closed:
-					return cScreen::EXIT;
+					return cScreen::EXIT_PROGRAM;
 
 				case sf::Event::KeyReleased:
 					return cScreen::SIMULATION;
@@ -105,5 +104,5 @@ int screen0Start::Run(sf::RenderWindow &window)
 		window.draw(title);
 		window.display();
 	}
-	return cScreen::EXIT;
+	return cScreen::EXIT_PROGRAM;
 }

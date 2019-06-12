@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Circle.h"
 #include "Message.h"
 
@@ -8,7 +7,7 @@ class CircleContainer : public sf::Drawable
 {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		for (int i = 0; i < m_count ; i++)
+		for (int i = m_count - 1; i >= 0; --i)
 		{
 			target.draw((*circlesArray)[i], states);
 		}

@@ -52,7 +52,7 @@ void Circle::resize()
 {
 	setRadius(parent->getRadius() * loadProgress);
 	setOrigin(parent->getRadius() * loadProgress, parent->getRadius() * loadProgress);
-	if (!isInValidArea())
+	if (!isInValidArea() && !loading)
 	{
 		resizedWindow(false);
 	}

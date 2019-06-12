@@ -21,7 +21,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 			switch (event.type)
 			{
 			case sf::Event::Closed:
-				return cScreen::EXIT;
+				return cScreen::EXIT_PROGRAM;
 
 			case sf::Event::MouseWheelScrolled:
 				container.changeCircleSize(event.mouseWheelScroll.delta);
@@ -92,7 +92,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 		}
 		window.display();
 	}
-	return cScreen::EXIT;
+	return cScreen::EXIT_PROGRAM;
 }
 
 std::string boolToText(bool input)
