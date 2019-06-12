@@ -3,13 +3,11 @@
 #include "screen1Simulation.h"
 #include "cScreen.h"
 
+screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects))
+{}
 
 int screen1Simulation::Run(sf::RenderWindow &window)
 {
-
-	Settings* settings = Settings::getInstance();
-	CircleContainer container = CircleContainer(settings->minNumObjects);
-
 	while (true)
 	{
 		settings->resetTimer();

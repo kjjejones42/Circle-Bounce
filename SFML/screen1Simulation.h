@@ -9,7 +9,9 @@ std::string boolToText(bool input);
 
 class screen1Simulation : public cScreen
 {
+	Settings* settings;
+	CircleContainer container;
 public:
-	screen1Simulation(void) {};
+	screen1Simulation();
 	virtual int Run(sf::RenderWindow &window);
 };

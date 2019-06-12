@@ -1,6 +1,7 @@
 #include "screen0Start.h"
 #include "settings.h"
 #include "font.h"
+#include <iostream>
 
 class Title : public sf::Drawable
 {
@@ -39,6 +40,14 @@ public:
 		textArray.push_back(text);
 		return *this;
 	}
+	void move(double x, double y)
+	{
+		for (sf::Text &text : textArray)
+		{
+			
+			text.move(x, y);
+		}
+	}
 };
 
 int screen0Start::Run(sf::RenderWindow &window)
@@ -73,6 +82,16 @@ int screen0Start::Run(sf::RenderWindow &window)
 
 				case sf::Event::KeyReleased:
 					return cScreen::SIMULATION;
+
+				case sf::Event::Resized:
+				{
+					window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
+					double diffX = (int)event.size.width - settings->window.x;
+					title.move(diffX / 2.0, 0.0);
+					settings->window.x = event.size.width;
+					settings->window.y = event.size.height;
+					break;
+				}
 			}
 		}
 		window.draw(rectangle);
