@@ -38,14 +38,14 @@ bool Circle::isInValidArea()
 {
 	sf::Vector2f position = getPosition();
 	double radius = loadProgress * parent->getRadius();
-	return !(position.x < radius || position.y < radius || position.x >(settings->window.x - radius) || position.y >(settings->window.y - radius));
+	return !(position.x < radius || position.y < radius || position.x >(settings->window->getSize().x - radius) || position.y >(settings->window->getSize().y - radius));
 }
 
 void Circle::setRandomPosition()
 {
 	setPosition(
-		settings->getRandom(0, settings->window.x - loadProgress * parent->getDiameter()) + loadProgress * parent->getRadius(),
-		settings->getRandom(0,settings->window.y - loadProgress * parent->getDiameter()) + loadProgress * parent->getRadius()
+		settings->getRandom(0, settings->window->getSize().x - loadProgress * parent->getDiameter()) + loadProgress * parent->getRadius(),
+		settings->getRandom(0,settings->window->getSize().y - loadProgress * parent->getDiameter()) + loadProgress * parent->getRadius()
 	);
 }
 void Circle::resize()
@@ -77,17 +77,17 @@ void Circle::update()
 	if (parent->getWrap())
 	{
 		// If wrap setting is selected, ensures that the object's position wraps around
-		position.x += settings->window.x + parent->getDiameter();
-		position.y += settings->window.y + parent->getDiameter();
+		position.x += settings->window->getSize().x + parent->getDiameter();
+		position.y += settings->window->getSize().y + parent->getDiameter();
 		setPosition(
-			fmod(position.x + parent->getRadius(), settings->window.x + parent->getDiameter()) - parent->getRadius(),
-			fmod(position.y + parent->getRadius(), settings->window.y + parent->getDiameter()) - parent->getRadius()
+			fmod(position.x + parent->getRadius(), settings->window->getSize().x + parent->getDiameter()) - parent->getRadius(),
+			fmod(position.y + parent->getRadius(), settings->window->getSize().y + parent->getDiameter()) - parent->getRadius()
 		);
 	}
 	else
 	{
 		// Makes object bounce off of the walls.
-		if (position.x >= settings->window.x - radius)
+		if (position.x >= settings->window->getSize().x - radius)
 		{
 			momentum.x = -std::abs(momentum.x);
 		}
@@ -95,7 +95,7 @@ void Circle::update()
 		{
 			momentum.x = std::abs(momentum.x);
 		}
-		if (position.y >= settings->window.y - radius)
+		if (position.y >= settings->window->getSize().y - radius)
 		{
 			momentum.y = -std::abs(momentum.y);
 		}
@@ -112,8 +112,8 @@ void Circle::update()
 void Circle::resizedWindow(bool windowResize){
 
 	double radius = parent->getRadius();
-	int windowX = settings->window.x;
-	int windowY = settings->window.y;
+	int windowX = settings->window->getSize().x;
+	int windowY = settings->window->getSize().y;
 
 	// Changes position if the window is resized to a smaller size
 	if (!isInValidArea())

@@ -133,7 +133,7 @@ void CircleContainer::setDiameter(int n_diam)
 }
 int CircleContainer::setResizeRange()
 {
-	diameterRange.max = (settings->window.x > settings->window.y ? settings->window.y : settings->window.x) - 1;
+	diameterRange.max = (settings->window->getSize().x > settings->window->getSize().y ? settings->window->getSize().y : settings->window->getSize().x) - 1;
 	if (m_diameter > diameterRange.max)
 	{
 		setDiameter(diameterRange.max);

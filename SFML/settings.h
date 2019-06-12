@@ -35,14 +35,15 @@ public:
 	const bool initialDraw = true;
 	const bool initialWrap = false;
 	const int initialDiameter = 50;
+	const int initialWindowWidth = 1280;
+	const int initialWindowHeight = 720;
 	const cScreen::screenName initialScreen = cScreen::START;
 	std::chrono::time_point<clock_t> m_beg;
+	sf::RenderWindow* window;
 
-	struct {
-		int x = 1280;
-		int y = 720;
-	} window;
-		
+	int previousWindowWidth = initialWindowWidth;
+	int previousWindowHeight = initialWindowHeight;
+
 	double getRandom(float min, float max);
 	void resetTimer();
 	double elapsed() const;

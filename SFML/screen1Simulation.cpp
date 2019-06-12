@@ -2,6 +2,7 @@
 
 #include "screen1Simulation.h"
 #include "cScreen.h"
+#include <iostream>
 
 screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects)) {}
 
@@ -29,13 +30,14 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 
 			// Redistributes the drawn objects when the window is resized
 			case sf::Event::Resized:
+				std::cout << event.size.width << ":" << event.size.height << " " << settings->window->getSize().x << ":" << settings->window->getSize().y << "\n";
 				if (container.getLoaded())
 				{
 					window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
-					float diffX = std::max(((int)event.size.width - settings->window.x) / 2, 0);
-					float diffY = std::max(((int)event.size.height - settings->window.y) / 2, 0);
-					settings->window.x = event.size.width;
-					settings->window.y = event.size.height;
+					float diffX = std::max(((int)event.size.width - settings->previousWindowWidth) / 2, 0);
+					float diffY = std::max(((int)event.size.height - settings->previousWindowHeight) / 2, 0);
+					settings->previousWindowWidth = event.size.width;
+					settings->previousWindowHeight = event.size.height;
 					container.resizedWindow(true);
 					container.move(diffX, diffY);
 				}
