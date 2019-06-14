@@ -4,6 +4,7 @@
 #include "cScreen.h"
 #include "screen0Start.h"
 #include "screen1Simulation.h"
+#include "screen2Game.h"
 
 int main()
 {
@@ -23,6 +24,8 @@ int main()
 	Screens[cScreen::START] = &s0;
 	screen1Simulation s1;
 	Screens[cScreen::SIMULATION] = &s1;
+	screen2Game s2;
+	Screens[cScreen::GAME] = &s2;
 
 	int screen = settings->initialScreen;
 	while (screen != cScreen::EXIT_PROGRAM)

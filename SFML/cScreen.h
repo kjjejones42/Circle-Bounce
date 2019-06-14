@@ -10,6 +10,7 @@ public:
 		EXIT_PROGRAM = -1,
 		SIMULATION,
 		START,
+		GAME,
 		NUM_OF_SCREENS
 	};
 };
