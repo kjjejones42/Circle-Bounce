@@ -13,8 +13,10 @@ private:
 	}
 	sf::VertexArray vertices;
 	Settings* settings;
+	sf::Vector2f seekPoint;
 
 public:
+	void setSeekPoint(sf::Vector2i(pos)) { setPosition(pos.x, pos.y); }
 	virtual sf::Vector2f getPoint(std::size_t index) const;
 	virtual std::size_t getPointCount() const { return 4; }
 	void update();

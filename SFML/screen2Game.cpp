@@ -5,6 +5,7 @@
 
 int screen2Game::Run(sf::RenderWindow &window)
 {
+	window.setMouseCursorVisible(false);
 	Settings* settings = Settings::getInstance();
 	double randColor = settings->getRandom(0, 1);
 
@@ -33,9 +34,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 				}
 			}
 		}
-
-		std::cout << player.getPosition().x << " " << player.getPosition().y << "\n";
-		player.move(1, 1);
+		player.setSeekPoint(sf::Mouse::getPosition(window));
 		window.draw(player);
 		window.display();
 	}
