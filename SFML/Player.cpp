@@ -1,5 +1,9 @@
 #include "Player.h"
 #include <iostream>
+#include <math.h>  
+
+#define PI 3.14159265
+
 
 
 Player::Player(): vertices(sf::VertexArray(sf::TrianglesFan, 4)), settings(Settings::getInstance())
@@ -8,7 +12,7 @@ Player::Player(): vertices(sf::VertexArray(sf::TrianglesFan, 4)), settings(Setti
 	{
 		vertices[i].position = getPoint(i);
 	}
-	vertices[0].color = sf::Color::Black;
+	vertices[0].color = sf::Color(0,0,0,0);
 	
 	move(settings->window->getSize().x / 2.0, settings->window->getSize().y / 2.0);
 }
@@ -16,7 +20,11 @@ Player::Player(): vertices(sf::VertexArray(sf::TrianglesFan, 4)), settings(Setti
 void Player::update()
 {
 	sf::Vector2f position = getPosition();
-	move((seekPoint.x - position.x) / 10, (seekPoint.y - position.y) / 10);
+	sf::Vector2f difference = sf::Vector2f(seekPoint) - position;
+	float angle = getRotation();
+	float newAngle = fmod(180.0 - atan2(difference.x, difference.y) * 180 / PI, 360.0);
+	setRotation(newAngle);
+;	move((seekPoint.x - position.x) / 30.0, (seekPoint.y - position.y) / 30.0);
 }
 
 sf::Vector2f Player::getPoint(std::size_t index) const
