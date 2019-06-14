@@ -30,7 +30,6 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 
 			// Redistributes the drawn objects when the window is resized
 			case sf::Event::Resized:
-				std::cout << event.size.width << ":" << event.size.height << " " << settings->window->getSize().x << ":" << settings->window->getSize().y << "\n";
 				if (container.getLoaded())
 				{
 					window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));

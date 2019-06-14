@@ -28,7 +28,7 @@ int main()
 	Screens[cScreen::GAME] = &s2;
 
 	int screen = settings->initialScreen;
-	while (screen != cScreen::EXIT_PROGRAM)
+	while (screen > cScreen::EXIT_PROGRAM)
 	{
 		screen = Screens[screen]->Run(window);
 	}
