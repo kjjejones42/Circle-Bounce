@@ -10,6 +10,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 	double randColor = settings->getRandom(0, 1);
 
 	Player player;
+	sf::CircleShape mouse;
+	mouse.setRadius(3);
 		
 	while (true)
 	{
@@ -34,8 +36,12 @@ int screen2Game::Run(sf::RenderWindow &window)
 				}
 			}
 		}
-		player.setSeekPoint(sf::Mouse::getPosition(window));
+		sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+		player.setSeekPoint(mousePosition);
+		mouse.setPosition(mousePosition.x, mousePosition.y);
+		player.update();
 		window.draw(player);
+		window.draw(mouse);
 		window.display();
 	}
 	return cScreen::EXIT_PROGRAM;

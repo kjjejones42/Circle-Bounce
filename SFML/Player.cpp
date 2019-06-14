@@ -15,6 +15,8 @@ Player::Player(): vertices(sf::VertexArray(sf::TrianglesFan, 4)), settings(Setti
 
 void Player::update()
 {
+	sf::Vector2f position = getPosition();
+	move((seekPoint.x - position.x) / 10, (seekPoint.y - position.y) / 10);
 }
 
 sf::Vector2f Player::getPoint(std::size_t index) const
