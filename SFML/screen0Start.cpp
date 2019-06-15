@@ -3,6 +3,8 @@
 #include "font.h"
 #include "Title.h"
 
+void screen0Start::reset() {};
+
 int screen0Start::Run(sf::RenderWindow &window)
 {
 	Settings* settings = Settings::getInstance();

@@ -14,4 +14,5 @@ class screen1Simulation : public cScreen
 public:
 	screen1Simulation();
 	virtual int Run(sf::RenderWindow &window);
+	virtual void reset();
 };

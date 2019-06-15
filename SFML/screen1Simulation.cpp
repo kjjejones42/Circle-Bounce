@@ -4,6 +4,8 @@
 #include "cScreen.h"
 #include <iostream>
 
+void screen1Simulation::reset() {};
+
 screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects)) {}
 
 int screen1Simulation::Run(sf::RenderWindow &window)

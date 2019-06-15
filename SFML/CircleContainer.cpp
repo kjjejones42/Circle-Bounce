@@ -14,6 +14,14 @@ CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()
 	m_loaded = true;
 }
 
+void CircleContainer::reset()
+{
+	delete circlesArray;
+	circlesArray = new std::vector<Circle>;
+	circlesArray->reserve(settings->maxNumObjects);
+	m_count = 0;
+}
+
 void CircleContainer::changeCircleSize(int num)
 {
 	if (m_loaded && num != 0)

@@ -7,6 +7,7 @@ class cScreen
 public:
 	static int score;
 	virtual int Run(sf::RenderWindow &App) = 0;
+	virtual void reset() {};
 	enum screenName {
 		EXIT_PROGRAM = -1,
 		SIMULATION,

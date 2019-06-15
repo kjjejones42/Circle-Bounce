@@ -1,22 +1,27 @@
 #include "screen2Game.h"
-#include "settings.h"
-#include "player.h"
-#include "CircleContainer.h"
-#include "Goal.h"
-#include <iostream>
+
+screen2Game::screen2Game() : 
+	settings(Settings::getInstance()),
+	randColor(settings->getRandom(0, 1)),
+	player(Player()),
+	mouse(sf::CircleShape()),
+	container(CircleContainer(1)),
+	goal(Goal())
+{
+	mouse.setRadius(3);
+}
+
+void screen2Game::reset()
+{
+	goal.setRandomPosition();
+	container.reset();
+	container.addCircles(1);
+};
 
 int screen2Game::Run(sf::RenderWindow &window)
 {
 	window.setMouseCursorVisible(false);
-	Settings* settings = Settings::getInstance();
-	double randColor = settings->getRandom(0, 1);
-
-	Player player;
-	sf::CircleShape mouse;
-	CircleContainer container(1);
-	Goal goal;
-	mouse.setRadius(3);
-	cScreen::score = 0;
+	container.message.setMessage("Get the red circle to win!");
 	while (true)
 	{
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
@@ -42,6 +47,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 					player.move(diffX, diffY);
 					break;
 				}
+				default:
+					break;
 			}
 		}
 		sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
@@ -61,7 +68,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 			container.message.setMessage("Score: " + std::to_string(score));
 			goal.setRandomPosition();
 		}
-
+		std::cout << score << "\n";
 		window.draw(container);
 		window.draw(goal);
 		window.draw(player);

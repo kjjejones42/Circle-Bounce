@@ -3,6 +3,8 @@
 #include "font.h"
 #include "Title.h"
 
+void screen3GameOver::reset() {};
+
 int screen3GameOver::Run(sf::RenderWindow &window)
 {
 	Settings* settings = Settings::getInstance();
@@ -17,6 +19,7 @@ int screen3GameOver::Run(sf::RenderWindow &window)
 
 	while (true)
 	{
+
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
 		sf::Event event;
 		while (window.pollEvent(event))

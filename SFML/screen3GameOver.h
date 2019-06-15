@@ -9,5 +9,6 @@ class screen3GameOver : public cScreen
 public:
 	screen3GameOver() : settings(Settings::getInstance()) {};
 	int Run(sf::RenderWindow &window);
+	virtual void reset();
 };
 

@@ -32,7 +32,7 @@ class CircleContainer : public sf::Drawable
 	} diameterRange;
 
 public:	
-	CircleContainer(int c_count);   
+	CircleContainer(int c_count = 0);   
 	
 	Message message;
 	void setWrap(bool wrap) { m_wrap = wrap; };
@@ -53,6 +53,7 @@ public:
 	void setRandomPosition();
 	void changeOpacity(int difference);
 	void addCircles(int num);
+	void reset();
 	
 	void setDiameter(int n_diam);
 	int getDiameter() { return m_diameter; }
