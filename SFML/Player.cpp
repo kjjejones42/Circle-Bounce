@@ -4,8 +4,6 @@
 
 #define PI 3.14159265
 
-
-
 Player::Player(): vertices(sf::VertexArray(sf::TrianglesFan, 4)), settings(Settings::getInstance())
 {
 	for (int i = 0; i < 4; i++)

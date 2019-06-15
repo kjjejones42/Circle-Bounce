@@ -11,6 +11,7 @@ public:
 		SIMULATION,
 		START,
 		GAME,
+		GAME_OVER,
 		NUM_OF_SCREENS
 	};
 };

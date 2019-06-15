@@ -138,7 +138,9 @@
     <ClCompile Include="screen0Start.cpp" />
     <ClCompile Include="screen1Simulation.cpp" />
     <ClCompile Include="screen2Game.cpp" />
+    <ClCompile Include="screen3GameOver.cpp" />
     <ClCompile Include="settings.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
@@ -151,9 +153,11 @@
     <ClInclude Include="screen0Start.h" />
     <ClInclude Include="screen1Simulation.h" />
     <ClInclude Include="screen2Game.h" />
+    <ClInclude Include="screen3GameOver.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFML.rc" />

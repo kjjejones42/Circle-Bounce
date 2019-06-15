@@ -1,9 +1,9 @@
-#include "screen0Start.h"
+#include "screen3GameOver.h"
 #include "settings.h"
 #include "font.h"
 #include "Title.h"
 
-int screen0Start::Run(sf::RenderWindow &window)
+int screen3GameOver::Run(sf::RenderWindow &window)
 {
 	Settings* settings = Settings::getInstance();
 	double randColor = settings->getRandom(0, 1);
@@ -26,34 +26,34 @@ int screen0Start::Run(sf::RenderWindow &window)
 		{
 			switch (event.type)
 			{
-				case sf::Event::Closed:
-					return cScreen::EXIT_PROGRAM;
+			case sf::Event::Closed:
+				return cScreen::EXIT_PROGRAM;
 
-				case sf::Event::KeyReleased:
-					switch (event.key.code)
-					{
-					case sf::Keyboard::S:
-						return cScreen::SIMULATION;
-
-					case sf::Keyboard::G:
-						return cScreen::GAME;
-
-					default:
-						break;
-					}
-					break;
-
-				case sf::Event::Resized:
+			case sf::Event::KeyReleased:
+				switch (event.key.code)
 				{
-					window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
-					double diffX = (int)event.size.width - settings->previousWindowWidth;
-					settings->previousWindowWidth = event.size.width;
-					title.move(diffX / 2.0, 0.0);
-					title.calculateVerticalPosition();
-					break;
-				}
+				case sf::Keyboard::S:
+					return cScreen::SIMULATION;
+
+				case sf::Keyboard::G:
+					return cScreen::GAME;
+
 				default:
 					break;
+				}
+				break;
+
+			case sf::Event::Resized:
+			{
+				window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
+				double diffX = (int)event.size.width - settings->previousWindowWidth;
+				settings->previousWindowWidth = event.size.width;
+				title.move(diffX / 2.0, 0.0);
+				title.calculateVerticalPosition();
+				break;
+			}
+			default:
+				break;
 			}
 		}
 		window.draw(title);
