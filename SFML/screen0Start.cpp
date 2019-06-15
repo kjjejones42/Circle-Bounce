@@ -87,7 +87,14 @@ int screen0Start::Run(sf::RenderWindow &window)
 					return cScreen::EXIT_PROGRAM;
 
 				case sf::Event::KeyReleased:
-					return cScreen::SIMULATION;
+					switch (event.key.code)
+					{
+					case sf::Keyboard::S:
+						return cScreen::SIMULATION;
+
+					case sf::Keyboard::G:
+						return cScreen::GAME;
+					}
 
 				case sf::Event::Resized:
 				{

@@ -50,6 +50,7 @@ public:
 	void move(float x, float y);
 	void setRandomPosition();
 	void changeOpacity(int difference);
+	void addCircles(int num);
 	
 	void setDiameter(int n_diam);
 	int getDiameter() { return m_diameter; }

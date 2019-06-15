@@ -37,7 +37,7 @@ public:
 	const int initialDiameter = 50;
 	const int initialWindowWidth = 1280;
 	const int initialWindowHeight = 720;
-	const cScreen::screenName initialScreen = cScreen::GAME;
+	const cScreen::screenName initialScreen = cScreen::START;
 	std::chrono::time_point<clock_t> m_beg;
 	sf::RenderWindow* window;
 

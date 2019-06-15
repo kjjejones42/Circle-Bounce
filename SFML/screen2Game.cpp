@@ -1,6 +1,7 @@
 #include "screen2Game.h"
 #include "settings.h"
 #include "player.h"
+#include "CircleContainer.h"
 #include <iostream>
 
 int screen2Game::Run(sf::RenderWindow &window)
@@ -11,6 +12,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 
 	Player player;
 	sf::CircleShape mouse;
+	CircleContainer container(0);
 	mouse.setRadius(3);
 		
 	while (true)
@@ -40,6 +42,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 		player.setSeekPoint(mousePosition);
 		mouse.setPosition(mousePosition.x, mousePosition.y);
 		player.update();
+		window.draw(container);
 		window.draw(player);
 		window.draw(mouse);
 		window.display();

@@ -56,16 +56,20 @@ void CircleContainer::resizedWindow(bool windowResize)
 	resize();
 }
 
-void CircleContainer::update()
+void CircleContainer::addCircles(int num)
 {
 	if (m_count < settings->maxNumObjects)
-	{		
-		m_count += settings->numObjectsChange;
-		for (int i = 0; i < settings->numObjectsChange; i++)
+	{
+		m_count += num;
+		for (int i = 0; i < num; i++)
 		{
 			circlesArray->push_back(Circle(this));
 		}
 	}
+}
+
+void CircleContainer::update()
+{
 	if (settings->multithreading)
 	{
 		std::thread t1(&CircleContainer::updateSection, this, 0, 1);

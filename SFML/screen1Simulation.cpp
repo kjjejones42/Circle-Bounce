@@ -88,6 +88,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 
 		if (container.getLoaded())
 		{
+			container.addCircles(settings->numObjectsChange);
 			container.update();
 			window.draw(container);
 		}
