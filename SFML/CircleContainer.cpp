@@ -4,16 +4,13 @@
 #include <vector>
 #include <thread>
 #include <iostream>
+#include "Player.h"
 
-CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message())
+CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message()), m_count(0), m_opacity(settings->initialOpacity), m_draw(settings->initialDraw), m_wrap(settings->initialWrap)
 {
-	m_opacity = settings->initialOpacity;
-	m_draw = settings->initialDraw;
-	m_wrap = settings->initialWrap;
-	m_count = c_count;
 	circlesArray = new std::vector<Circle>;
-	circlesArray->push_back(Circle(this));
 	circlesArray->reserve(settings->maxNumObjects);
+	addCircles(c_count);
 	m_loaded = true;
 }
 
@@ -144,7 +141,16 @@ int CircleContainer::setResizeRange()
 	}
 	return diameterRange.max;
 }
-
+bool CircleContainer::checkCollision(Player &player)
+{
+	bool result = false;
+	for (int i = 0; i < m_count; i++)
+	{
+		result = (*circlesArray)[i].getGlobalBounds().contains(player.getCollider());
+		if (result) return result;
+	}
+	return result;
+}
 
 CircleContainer::~CircleContainer()
 {

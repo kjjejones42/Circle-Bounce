@@ -17,6 +17,7 @@ Player::Player(): vertices(sf::VertexArray(sf::TrianglesFan, 4)), settings(Setti
 	move(settings->window->getSize().x / 2.0, settings->window->getSize().y / 2.0);
 }
 
+
 void Player::update()
 {
 	sf::Vector2f position = getPosition();
@@ -37,4 +38,9 @@ sf::Vector2f Player::getPoint(std::size_t index) const
 		case 3: return sf::Vector2f(30.f, 50.f);
 	}
 	return sf::Vector2f(0, 0);
+}
+
+sf::Vector2f Player::getCollider()
+{
+	return getTransform().transformPoint(vertices[2].position);
 }

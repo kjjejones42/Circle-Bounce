@@ -12,9 +12,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 
 	Player player;
 	sf::CircleShape mouse;
-	CircleContainer container(0);
+	CircleContainer container(1);
 	mouse.setRadius(3);
-		
 	while (true)
 	{
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
@@ -23,6 +22,10 @@ int screen2Game::Run(sf::RenderWindow &window)
 		{
 			switch (event.type)
 			{
+				case sf::Event::KeyReleased:
+					if (event.key.code == sf::Keyboard::Escape)
+						return cScreen::START;
+
 				case sf::Event::Closed:
 					return cScreen::EXIT_PROGRAM;
 
@@ -42,6 +45,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 		player.setSeekPoint(mousePosition);
 		mouse.setPosition(mousePosition.x, mousePosition.y);
 		player.update();
+		container.update();
+		if (container.checkCollision(player)) { std::cout << "collision\n"; return cScreen::START; }
 		window.draw(container);
 		window.draw(player);
 		window.draw(mouse);

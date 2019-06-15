@@ -3,6 +3,8 @@
 #include "Circle.h"
 #include "Message.h"
 
+class Player;
+
 class CircleContainer : public sf::Drawable
 {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -55,6 +57,7 @@ public:
 	void setDiameter(int n_diam);
 	int getDiameter() { return m_diameter; }
 	int setResizeRange();
+	bool checkCollision(Player &player);
 	
 	~CircleContainer();
 };

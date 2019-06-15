@@ -20,6 +20,7 @@ public:
 	void setSeekPoint(sf::Vector2i(pos)) { seekPoint = pos; }
 	virtual sf::Vector2f getPoint(std::size_t index) const;
 	virtual std::size_t getPointCount() const { return 4; }
+	sf::Vector2f getCollider();
 	void update();
 	Player();
 };
