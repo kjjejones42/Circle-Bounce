@@ -2,6 +2,7 @@
 #include "settings.h"
 #include "player.h"
 #include "CircleContainer.h"
+#include "Goal.h"
 #include <iostream>
 
 int screen2Game::Run(sf::RenderWindow &window)
@@ -13,7 +14,9 @@ int screen2Game::Run(sf::RenderWindow &window)
 	Player player;
 	sf::CircleShape mouse;
 	CircleContainer container(1);
+	Goal goal;
 	mouse.setRadius(3);
+	int count = 0;
 	while (true)
 	{
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
@@ -46,8 +49,20 @@ int screen2Game::Run(sf::RenderWindow &window)
 		mouse.setPosition(mousePosition.x, mousePosition.y);
 		player.update();
 		container.update();
-		if (container.checkCollision(player)) { std::cout << "collision\n"; return cScreen::START; }
+		if (container.checkCollision(player))
+		{
+			count = 0;
+			return cScreen::START;
+		}
+		if (goal.checkCollision(player))
+		{
+			count++;
+			container.addCircles(1);
+			container.message.setMessage("Score " + std::to_string(count));
+			goal.setRandomPosition();
+		}
 		window.draw(container);
+		window.draw(goal);
 		window.draw(player);
 		window.draw(mouse);
 		window.display();

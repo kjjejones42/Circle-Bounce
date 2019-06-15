@@ -22,7 +22,6 @@ void Player::update()
 {
 	sf::Vector2f position = getPosition();
 	sf::Vector2f difference = sf::Vector2f(seekPoint) - position;
-	float angle = getRotation();
 	float newAngle = fmod(180.0 - atan2(difference.x, difference.y) * 180 / PI, 360.0);
 	setRotation(newAngle);
 ;	move((seekPoint.x - position.x) / 30.0, (seekPoint.y - position.y) / 30.0);

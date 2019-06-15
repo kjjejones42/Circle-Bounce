@@ -94,7 +94,11 @@ int screen0Start::Run(sf::RenderWindow &window)
 
 					case sf::Keyboard::G:
 						return cScreen::GAME;
+
+					default:
+						break;
 					}
+					break;
 
 				case sf::Event::Resized:
 				{
@@ -105,6 +109,8 @@ int screen0Start::Run(sf::RenderWindow &window)
 					title.calculateVerticalPosition();
 					break;
 				}
+				default:
+					break;
 			}
 		}
 		window.draw(title);

@@ -131,6 +131,7 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CircleContainer.cpp" />
     <ClCompile Include="font.cpp" />
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="font.h" />
     <ClInclude Include="CircleContainer.h" />
     <ClInclude Include="cScreen.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="screen0Start.h" />

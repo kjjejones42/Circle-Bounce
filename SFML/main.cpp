@@ -14,7 +14,7 @@ int main()
 	sf::RenderWindow window(
 		sf::VideoMode(settings->initialWindowWidth, settings->initialWindowHeight),
 		"Circle Bounce",
-		sf::Style::Default,
+		sf::Style::Close | sf::Style::Titlebar,
 		windowSettings);
 	window.setVerticalSyncEnabled(settings->vSync);
 	settings->window = &window;
@@ -26,6 +26,7 @@ int main()
 	Screens[cScreen::SIMULATION] = &s1;
 	screen2Game s2;
 	Screens[cScreen::GAME] = &s2;
+	
 
 	int screen = settings->initialScreen;
 	while (screen > cScreen::EXIT_PROGRAM)
