@@ -9,6 +9,7 @@ class Title : public sf::Drawable
 	std::vector<sf::Text> textArray;
 	sf::RectangleShape textBackground;
 	Settings *settings;
+	const int lineSpacing = 40;
 
 public:
 	Title() : settings(Settings::getInstance())
