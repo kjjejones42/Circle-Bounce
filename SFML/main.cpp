@@ -7,6 +7,8 @@
 #include "screen2Game.h"
 #include "screen3GameOver.h"
 
+int cScreen::score = 0;
+
 int main()
 {
 	Settings* settings = Settings::getInstance();
@@ -15,7 +17,7 @@ int main()
 	sf::RenderWindow window(
 		sf::VideoMode(settings->initialWindowWidth, settings->initialWindowHeight),
 		"Circle Bounce",
-		sf::Style::Close | sf::Style::Titlebar,
+		sf::Style::Close | sf::Style::Titlebar | sf::Style::Resize,
 		windowSettings);
 	window.setVerticalSyncEnabled(settings->vSync);
 	settings->window = &window;

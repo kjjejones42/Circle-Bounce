@@ -5,6 +5,7 @@
 class cScreen
 {
 public:
+	static int score;
 	virtual int Run(sf::RenderWindow &App) = 0;
 	enum screenName {
 		EXIT_PROGRAM = -1,
@@ -15,3 +16,4 @@ public:
 		NUM_OF_SCREENS
 	};
 };
+

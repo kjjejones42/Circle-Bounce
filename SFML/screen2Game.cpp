@@ -16,6 +16,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 	CircleContainer container(1);
 	Goal goal;
 	mouse.setRadius(3);
+	cScreen::score = 0;
 	while (true)
 	{
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
@@ -51,12 +52,11 @@ int screen2Game::Run(sf::RenderWindow &window)
 
 		if (container.checkCollision(player))
 		{
-			score = 0;
-			return cScreen::START;
+			return cScreen::GAME_OVER;
 		}
 		if (goal.checkCollision(player))
 		{
-			score++;
+			cScreen::score++;
 			container.addCircles(1);
 			container.message.setMessage("Score: " + std::to_string(score));
 			goal.setRandomPosition();

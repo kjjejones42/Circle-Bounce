@@ -8,15 +8,12 @@ int screen3GameOver::Run(sf::RenderWindow &window)
 	Settings* settings = Settings::getInstance();
 	double randColor = settings->getRandom(0, 1);
 	Title title;
-	title.addMessage("Welcome to Circle Bounce!")
-		.addMessage("Press any button to start.")
-		.addMessage("Or don't, I'm not a cop.")
+	title.addMessage("GAME OVER!")
 		.addMessage("\n")
-		.addMessage("D - Draw trails.")
-		.addMessage("W - Wrap around the screen.")
-		.addMessage("R - Reset position.")
-		.addMessage("Up & Down Arrows - Change size.")
-		.addMessage("Left & Right Arrows - Change opacity.");
+		.addMessage("Your score was:")
+		.addMessage(std::to_string(cScreen::score))
+		.addMessage("\n")
+		.addMessage("Press any key to return to the Start screen.");
 
 	while (true)
 	{
@@ -30,18 +27,10 @@ int screen3GameOver::Run(sf::RenderWindow &window)
 				return cScreen::EXIT_PROGRAM;
 
 			case sf::Event::KeyReleased:
-				switch (event.key.code)
-				{
-				case sf::Keyboard::S:
-					return cScreen::SIMULATION;
-
-				case sf::Keyboard::G:
-					return cScreen::GAME;
-
-				default:
-					break;
-				}
-				break;
+			{
+				cScreen::score = 0;
+				return cScreen::START;
+			}
 
 			case sf::Event::Resized:
 			{

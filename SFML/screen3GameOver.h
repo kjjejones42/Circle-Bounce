@@ -3,7 +3,7 @@
 #include "screen0Start.h"
 #include "settings.h"
 
-class screen3GameOver : public screen0Start
+class screen3GameOver : public cScreen
 {
 	Settings *settings;
 public:

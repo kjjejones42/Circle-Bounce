@@ -2,9 +2,8 @@
 #include "cScreen.h"
 class screen2Game : public cScreen
 {
-	int score;
 public:
-	screen2Game() : score(0) {};
+	screen2Game() {};
 	virtual int Run(sf::RenderWindow &window);
 };
 
