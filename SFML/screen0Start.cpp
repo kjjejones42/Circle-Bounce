@@ -11,17 +11,11 @@ int screen0Start::Run(sf::RenderWindow &window)
 	double randColor = settings->getRandom(0, 1);
 	Title title;
 	title.addMessage("Welcome to Circle Bounce!")
+		.addMessage("\n")
 		.addMessage("Press 'G' to start the game.")
 		.addMessage("Press 'S' to start simulation mode.")
 		.addMessage("\n")
-		.addMessage("Or don't do anything, I'm not a cop.")
-		.addMessage("\n")
-		.addMessage("SIMULATION CONTROLS")
-		.addMessage("D - Draw trails.")
-		.addMessage("W - Wrap around the screen.")
-		.addMessage("R - Reset position.")
-		.addMessage("Up & Down Arrows - Change size.")
-		.addMessage("Left & Right Arrows - Change opacity.");
+		.addMessage("Or don't do anything, I'm not a cop.");
 
 	while (true)
 	{

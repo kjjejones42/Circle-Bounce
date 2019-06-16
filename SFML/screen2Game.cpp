@@ -23,11 +23,13 @@ int screen2Game::Run(sf::RenderWindow &window)
 {
 	window.setMouseCursorVisible(false);
 	Title title;
-	title.addMessage("Get the red circle!")
+	title.addMessage("GAME CONTROLS")
+		.addMessage("Get the red circle!")
 		.addMessage("Move using the mouse.")
 		.addMessage("Avoid every other circle.")
+		.addMessage("Press any button to begin.")
 		.addMessage("\n")
-		.addMessage("Press any button to begin.");
+		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
 
 	sf::RectangleShape rect;
 	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
@@ -46,6 +48,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 				{
 					case sf::Event::KeyReleased:
 					{
+						if (event.key.code == sf::Keyboard::Escape) return cScreen::START;
 						onTitleMessage = false;
 						break;
 					}						
