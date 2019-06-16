@@ -11,11 +11,13 @@ void screen1Simulation::reset()
 	container.addCircles(settings->minNumObjects);
 };
 
-screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects)) {}
-
-int screen1Simulation::Run(sf::RenderWindow &window)
+screen1Simulation::screen1Simulation() :
+	settings(Settings::getInstance()),
+	container(CircleContainer(settings->minNumObjects)),
+	title(Title()),
+	rect(sf::RectangleShape()),
+	onTitleMessage(true)
 {
-	Title title;
 	title.addMessage("SIMULATION CONTROLS")
 		.addMessage("\n")
 		.addMessage("D - Draw trails.")
@@ -27,10 +29,12 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 		.addMessage("Press any key to start.")
 		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
 
-	sf::RectangleShape rect;
 	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
 
-	bool onTitleMessage = true;
+}
+
+int screen1Simulation::Run(sf::RenderWindow &window)
+{
 	while (true)
 	{
 		rect.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
@@ -70,7 +74,6 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 			window.draw(container);
 			window.draw(rect);
 			window.draw(title);
-			window.display();
 		}
 		else
 		{
@@ -92,7 +95,6 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 					container.changeCircleSize(event.mouseWheelScroll.delta);
 					break;
 
-					// Redistributes the drawn objects when the window is resized
 				case sf::Event::Resized:
 					if (container.getLoaded())
 					{
@@ -154,10 +156,10 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 			{
 				container.addCircles(settings->numObjectsChange);
 				container.update();
-				window.draw(container);
 			}
-			window.display();
+			window.draw(container);
 		}
+		window.display();
 	}
 	return cScreen::EXIT_PROGRAM;
 }

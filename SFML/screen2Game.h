@@ -5,6 +5,7 @@
 #include "CircleContainer.h"
 #include "Goal.h"
 #include <iostream>
+#include "Title.h"
 
 class screen2Game : public cScreen
 {
@@ -14,6 +15,9 @@ class screen2Game : public cScreen
 	CircleContainer container;
 	double randColor;
 	Goal goal;
+	Title title;
+	sf::RectangleShape rect;
+	bool onTitleMessage = true;
 
 public:
 	screen2Game();

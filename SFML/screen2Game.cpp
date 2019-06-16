@@ -7,9 +7,20 @@ screen2Game::screen2Game() :
 	player(Player()),
 	mouse(sf::CircleShape()),
 	container(CircleContainer(1)),
-	goal(Goal())
+	goal(Goal()),
+	title(Title()),
+	rect(sf::RectangleShape()),
+	onTitleMessage(true)
 {
 	mouse.setRadius(3);
+	title.addMessage("GAME CONTROLS")
+		.addMessage("Get the red circle!")
+		.addMessage("Move using the mouse.")
+		.addMessage("Avoid every other circle.")
+		.addMessage("\n")
+		.addMessage("Press any key to start.")
+		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
+	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
 }
 
 void screen2Game::reset()
@@ -22,24 +33,12 @@ void screen2Game::reset()
 int screen2Game::Run(sf::RenderWindow &window)
 {
 	window.setMouseCursorVisible(false);
-	Title title;
-	title.addMessage("GAME CONTROLS")
-		.addMessage("Get the red circle!")
-		.addMessage("Move using the mouse.")
-		.addMessage("Avoid every other circle.")
-		.addMessage("\n")
-		.addMessage("Press any key to start.")
-		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
-
-	sf::RectangleShape rect;
-	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
-	
-	bool onTitleMessage = true;
 	while (true)
 	{
 		rect.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
 		sf::Event event;
+
 		if (onTitleMessage)
 		{
 			while (window.pollEvent(event))
@@ -48,7 +47,11 @@ int screen2Game::Run(sf::RenderWindow &window)
 				{
 					case sf::Event::KeyReleased:
 					{
-						if (event.key.code == sf::Keyboard::Escape) return cScreen::START;
+						if (event.key.code == sf::Keyboard::Escape)
+						{
+							reset();
+							return cScreen::START;
+						}
 						onTitleMessage = false;
 						break;
 					}						
@@ -69,7 +72,6 @@ int screen2Game::Run(sf::RenderWindow &window)
 			window.draw(player);
 			window.draw(rect);
 			window.draw(title);
-			window.display();
 		}
 		else
 		{
@@ -118,14 +120,12 @@ int screen2Game::Run(sf::RenderWindow &window)
 				container.message.setMessage("Score: " + std::to_string(score));
 				goal.setRandomPosition();
 			}
-			std::cout << score << "\n";
 			window.draw(container);
 			window.draw(goal);
 			window.draw(player);
 			window.draw(mouse);
-
-			window.display();
 		}
+		window.display();
 	}
 	
 	return cScreen::EXIT_PROGRAM;

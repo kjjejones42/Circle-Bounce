@@ -14,6 +14,7 @@ int screen0Start::Run(sf::RenderWindow &window)
 		.addMessage("\n")
 		.addMessage("Press 'G' to start the game.")
 		.addMessage("Press 'S' to start simulation mode.")
+		.addMessage("Press Esc to exit.")
 		.addMessage("\n")
 		.addMessage("Or don't do anything, I'm not a cop.");
 
@@ -36,6 +37,9 @@ int screen0Start::Run(sf::RenderWindow &window)
 
 					case sf::Keyboard::G:
 						return cScreen::GAME;
+
+					case sf::Keyboard::Escape:
+						return cScreen::EXIT_PROGRAM;
 
 					default:
 						break;
