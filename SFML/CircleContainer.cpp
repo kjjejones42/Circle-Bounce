@@ -1,10 +1,6 @@
 #pragma once
 
 #include "CircleContainer.h"
-#include <vector>
-#include <thread>
-#include <iostream>
-#include "Player.h"
 
 CircleContainer::CircleContainer(int c_count) : settings(Settings::getInstance()), message(Message()), m_count(0), m_opacity(settings->initialOpacity), m_draw(settings->initialDraw), m_wrap(settings->initialWrap)
 {

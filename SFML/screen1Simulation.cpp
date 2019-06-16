@@ -1,9 +1,6 @@
 #pragma once
 
 #include "screen1Simulation.h"
-#include "cScreen.h"
-#include <iostream>
-#include "Title.h";
 
 void screen1Simulation::reset()
 {
@@ -71,6 +68,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 				}
 				}
 			}
+			title.recalculatePosition();
 			window.draw(container);
 			window.draw(rect);
 			window.draw(title);

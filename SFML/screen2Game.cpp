@@ -1,5 +1,4 @@
 #include "screen2Game.h"
-#include "Title.h"
 
 screen2Game::screen2Game() : 
 	settings(Settings::getInstance()),
@@ -67,6 +66,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 					}
 				}
 			}
+			title.recalculatePosition();
 			window.draw(container);
 			window.draw(goal);
 			window.draw(player);

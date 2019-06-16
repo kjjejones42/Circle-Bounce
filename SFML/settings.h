@@ -4,6 +4,7 @@
 #include <random> 
 #include <chrono>
 #include "cScreen.h"
+#include "font.h"
 
 class Settings
 {

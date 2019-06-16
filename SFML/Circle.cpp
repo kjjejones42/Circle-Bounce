@@ -2,7 +2,6 @@
 
 #include "Circle.h"
 #include "CircleContainer.h"
-#include <iostream>
 
 void Circle::init()
 {

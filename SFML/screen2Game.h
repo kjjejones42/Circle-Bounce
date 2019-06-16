@@ -4,7 +4,6 @@
 #include "player.h"
 #include "CircleContainer.h"
 #include "Goal.h"
-#include <iostream>
 #include "Title.h"
 
 class screen2Game : public cScreen

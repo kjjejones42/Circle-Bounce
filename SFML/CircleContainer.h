@@ -2,6 +2,9 @@
 
 #include "Circle.h"
 #include "Message.h"
+#include <vector>
+#include <thread>
+#include "Player.h"
 
 class Player;
 

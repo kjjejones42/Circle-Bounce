@@ -1,8 +1,6 @@
 #pragma once
 
 #include "settings.h"
-#include "font.h"
-#include <iostream>
 
 Settings::Settings() :
 	m_mersenne(std::mt19937(static_cast<std::mt19937::result_type>(std::chrono::system_clock::now().time_since_epoch().count()))),

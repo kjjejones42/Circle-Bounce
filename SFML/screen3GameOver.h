@@ -1,7 +1,10 @@
 #pragma once
+
 #include "cScreen.h"
 #include "screen0Start.h"
 #include "settings.h"
+#include "font.h"
+#include "Title.h"
 
 class screen3GameOver : public cScreen
 {

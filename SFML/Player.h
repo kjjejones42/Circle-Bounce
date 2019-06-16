@@ -2,6 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "settings.h"
+#include <math.h>  
 
 class Player : public sf::Transformable, public sf::Drawable
 {

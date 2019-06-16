@@ -1,7 +1,4 @@
 #include "screen3GameOver.h"
-#include "settings.h"
-#include "font.h"
-#include "Title.h"
 
 void screen3GameOver::reset() {};
 
