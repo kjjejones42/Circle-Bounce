@@ -24,6 +24,6 @@ public:
 		}
 	}
 	Title& addMessage(std::string string);
-	void calculateVerticalPosition();
+	void recalculatePosition();
 	void move(double x, double y);
 };

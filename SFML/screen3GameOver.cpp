@@ -41,7 +41,7 @@ int screen3GameOver::Run(sf::RenderWindow &window)
 				double diffX = (int)event.size.width - settings->previousWindowWidth;
 				settings->previousWindowWidth = event.size.width;
 				title.move(diffX / 2.0, 0.0);
-				title.calculateVerticalPosition();
+				title.recalculatePosition();
 				break;
 			}
 			default:

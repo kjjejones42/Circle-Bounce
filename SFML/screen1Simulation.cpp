@@ -5,7 +5,11 @@
 #include <iostream>
 #include "Title.h";
 
-void screen1Simulation::reset() {};
+void screen1Simulation::reset()
+{
+	container.reset();
+	container.addCircles(settings->minNumObjects);
+};
 
 screen1Simulation::screen1Simulation() : settings(Settings::getInstance()), container(CircleContainer(settings->minNumObjects)) {}
 
@@ -20,6 +24,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 		.addMessage("Up & Down Arrows - Change size.")
 		.addMessage("Left & Right Arrows - Change opacity.")
 		.addMessage("\n")
+		.addMessage("Press any key to start.")
 		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
 
 	sf::RectangleShape rect;
@@ -42,7 +47,11 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 				{
 				case sf::Event::KeyReleased:
 				{
-					if (event.key.code == sf::Keyboard::Escape) return cScreen::START;
+					if (event.key.code == sf::Keyboard::Escape)
+					{
+						reset();
+						return cScreen::START;
+					}
 					onTitleMessage = false;
 					break;
 				}
@@ -52,6 +61,7 @@ int screen1Simulation::Run(sf::RenderWindow &window)
 
 				case sf::Event::Resized:
 				{
+					title.recalculatePosition();
 					window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
 					break;
 				}

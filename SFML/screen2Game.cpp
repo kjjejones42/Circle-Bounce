@@ -27,8 +27,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 		.addMessage("Get the red circle!")
 		.addMessage("Move using the mouse.")
 		.addMessage("Avoid every other circle.")
-		.addMessage("Press any button to begin.")
 		.addMessage("\n")
+		.addMessage("Press any key to start.")
 		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
 
 	sf::RectangleShape rect;
@@ -58,6 +58,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 
 					case sf::Event::Resized:
 					{
+						title.recalculatePosition();
 						window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
 						break;
 					}
