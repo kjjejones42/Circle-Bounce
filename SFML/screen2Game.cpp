@@ -11,7 +11,6 @@ screen2Game::screen2Game() :
 	rect(sf::RectangleShape()),
 	onTitleMessage(true)
 {
-	mouse.setRadius(3);
 	title.addMessage("GAME CONTROLS")
 		.addMessage("Get the red circle!")
 		.addMessage("Move using the mouse.")
@@ -20,6 +19,7 @@ screen2Game::screen2Game() :
 		.addMessage("Press any key to start.")
 		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
 	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
+	mouse.setRadius(3);
 }
 
 void screen2Game::reset()
@@ -111,6 +111,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 
 			if (container.checkCollision(player))
 			{
+				reset();
 				return cScreen::GAME_OVER;
 			}
 			if (goal.checkCollision(player))

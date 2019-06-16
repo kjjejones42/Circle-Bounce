@@ -30,10 +30,6 @@ int main()
 	int screen = settings->initialScreen;
 	while (screen > cScreen::EXIT_PROGRAM)
 	{
-		if (screen == cScreen::GAME_OVER)
-		{
-			Screens[cScreen::GAME]->reset();
-		}
 		window.setMouseCursorVisible(true);
 		screen = Screens[screen]->Run(window);
 	}
