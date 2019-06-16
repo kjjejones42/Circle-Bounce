@@ -1,4 +1,5 @@
 #include "screen2Game.h"
+#include "Title.h"
 
 screen2Game::screen2Game() : 
 	settings(Settings::getInstance()),
@@ -21,18 +22,63 @@ void screen2Game::reset()
 int screen2Game::Run(sf::RenderWindow &window)
 {
 	window.setMouseCursorVisible(false);
-	container.message.setMessage("Get the red circle to win!");
+	Title title;
+	title.addMessage("Get the red circle!")
+		.addMessage("Move using the mouse.")
+		.addMessage("Avoid every other circle.")
+		.addMessage("\n")
+		.addMessage("Press any button to begin.");
+
+	sf::RectangleShape rect;
+	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
+	
+	bool onTitleMessage = true;
 	while (true)
 	{
+		rect.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 		window.clear(settings->hslToRgb(std::fmod(randColor += 0.001, 1.0), 1.0, 0.05));
 		sf::Event event;
-		while (window.pollEvent(event))
+		if (onTitleMessage)
 		{
-			switch (event.type)
+			while (window.pollEvent(event))
 			{
+				switch (event.type)
+				{
+					case sf::Event::KeyReleased:
+					{
+						onTitleMessage = false;
+						break;
+					}						
+
+					case sf::Event::Closed:
+						return cScreen::EXIT_PROGRAM;
+
+					case sf::Event::Resized:
+					{
+						window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
+						break;
+					}
+				}
+			}
+			window.draw(container);
+			window.draw(goal);
+			window.draw(player);
+			window.draw(rect);
+			window.draw(title);
+			window.display();
+		}
+		else
+		{
+			while (window.pollEvent(event))
+			{
+				switch (event.type)
+				{
 				case sf::Event::KeyReleased:
 					if (event.key.code == sf::Keyboard::Escape)
-						return cScreen::START;
+					{
+						onTitleMessage = true;
+						break;
+					}
 
 				case sf::Event::Closed:
 					return cScreen::EXIT_PROGRAM;
@@ -49,32 +95,34 @@ int screen2Game::Run(sf::RenderWindow &window)
 				}
 				default:
 					break;
+				}
 			}
-		}
-		sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-		player.setSeekPoint(mousePosition);
-		mouse.setPosition(mousePosition.x, mousePosition.y);
-		player.update();
-		container.update();
+			sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+			player.setSeekPoint(mousePosition);
+			mouse.setPosition(mousePosition.x, mousePosition.y);
+			player.update();
+			container.update();
 
-		if (container.checkCollision(player))
-		{
-			return cScreen::GAME_OVER;
-		}
-		if (goal.checkCollision(player))
-		{
-			cScreen::score++;
-			container.addCircles(1);
-			container.message.setMessage("Score: " + std::to_string(score));
-			goal.setRandomPosition();
-		}
-		std::cout << score << "\n";
-		window.draw(container);
-		window.draw(goal);
-		window.draw(player);
-		window.draw(mouse);
+			if (container.checkCollision(player))
+			{
+				return cScreen::GAME_OVER;
+			}
+			if (goal.checkCollision(player))
+			{
+				cScreen::score++;
+				container.addCircles(1);
+				container.message.setMessage("Score: " + std::to_string(score));
+				goal.setRandomPosition();
+			}
+			std::cout << score << "\n";
+			window.draw(container);
+			window.draw(goal);
+			window.draw(player);
+			window.draw(mouse);
 
-		window.display();
+			window.display();
+		}
 	}
+	
 	return cScreen::EXIT_PROGRAM;
 }
