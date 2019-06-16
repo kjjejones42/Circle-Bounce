@@ -24,6 +24,7 @@ screen2Game::screen2Game() :
 
 void screen2Game::reset()
 {
+	player.setPosition(settings->window->getSize().x / 2.0, settings->window->getSize().y / 2.0);
 	goal.setRandomPosition();
 	container.reset();
 	container.addCircles(1);

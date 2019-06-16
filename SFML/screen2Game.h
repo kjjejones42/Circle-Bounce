@@ -6,6 +6,7 @@
 #include "Goal.h"
 #include "Title.h"
 
+// Screen that implements the Game program mode
 class screen2Game : public cScreen
 {
 	Player player;
