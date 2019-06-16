@@ -20,6 +20,7 @@ screen2Game::screen2Game() :
 		.addMessage("Press Esc to pause, and press Esc again to return to the start screen.");
 	rect.setFillColor(sf::Color(0, 0, 0, 255 * 0.8));
 	mouse.setRadius(3);
+	mouse.setOrigin(mouse.getRadius(), mouse.getRadius());
 }
 
 void screen2Game::reset()
@@ -53,6 +54,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 							return cScreen::START;
 						}
 						onTitleMessage = false;
+						player.setPosition(window.getPosition().x / 2.0, window.getPosition().y / 2.0);
+						goal.setRandomPosition();
 						break;
 					}						
 
