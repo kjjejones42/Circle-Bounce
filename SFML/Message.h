@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "settings.h"
-#include "font.h"
 
 class Message : public sf::Drawable
 {

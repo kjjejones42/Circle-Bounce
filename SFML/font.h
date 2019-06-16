@@ -1,4 +1,5 @@
 #pragma once
+
 namespace fontNameSpace
 {
 	extern unsigned int font_length;

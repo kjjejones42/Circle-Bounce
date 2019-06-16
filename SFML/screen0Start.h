@@ -2,7 +2,6 @@
 
 #include "cScreen.h"
 #include "settings.h"
-#include "font.h"
 #include "Title.h"
 
 class screen0Start : public cScreen
