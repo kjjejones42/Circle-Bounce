@@ -25,7 +25,7 @@ screen2Game::screen2Game() :
 
 void screen2Game::reset()
 {
-	player.setPosition(settings->window->getSize().x / 2.0, settings->window->getSize().y / 2.0);
+	player.recentreIcon();
 	goal.setRandomPosition();
 	container.reset();
 	container.addCircles(1);
@@ -34,6 +34,7 @@ void screen2Game::reset()
 int screen2Game::Run(sf::RenderWindow &window)
 {
 	window.setMouseCursorVisible(false);
+	bool gameHasBegun = false;
 	while (true)
 	{
 		rect.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
@@ -54,7 +55,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 							return cScreen::START;
 						}
 						onTitleMessage = false;
-						player.setPosition(window.getPosition().x / 2.0, window.getPosition().y / 2.0);
+						player.recentreIcon();
 						goal.setRandomPosition();
 						break;
 					}						
@@ -64,6 +65,11 @@ int screen2Game::Run(sf::RenderWindow &window)
 
 					case sf::Event::Resized:
 					{
+						if (!gameHasBegun)
+						{
+							player.recentreIcon();
+							goal.setRandomPosition();
+						}
 						title.recalculatePosition();
 						window.setView(sf::View(sf::FloatRect(0.f, 0.f, event.size.width, event.size.height)));
 						break;
@@ -79,6 +85,7 @@ int screen2Game::Run(sf::RenderWindow &window)
 		}
 		else
 		{
+			gameHasBegun = true;
 			while (window.pollEvent(event))
 			{
 				switch (event.type)

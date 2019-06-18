@@ -39,3 +39,7 @@ sf::Vector2f Player::getCollider()
 {
 	return getTransform().transformPoint(vertices[2].position);
 }
+void Player::recentreIcon()
+{
+	setPosition(settings->window->getSize().x / 2.0, settings->window->getSize().y / 2.0);
+}
