@@ -94,8 +94,8 @@ int screen2Game::Run(sf::RenderWindow &window)
 					if (event.key.code == sf::Keyboard::Escape)
 					{
 						onTitleMessage = true;
-						break;
 					}
+					break;
 
 				case sf::Event::Closed:
 					return cScreen::EXIT_PROGRAM;
