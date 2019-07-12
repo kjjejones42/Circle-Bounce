@@ -1,7 +1,3 @@
-# README for Circle Bounce
-## A C++ project by Jonathan Jones
-### To see source code please visit [https://github.com/kjjejones42/Circle-Bounce](https://github.com/kjjejones42/Circle-Bounce).
-
 This started as a basic attempt to make an elementary executable program for my CS50 Final Project - the idea was to make a program that bounced circles around a window.
 
 Python was originally used with the tk visual library, however the performance was severely lacking. The original Python source code is at the bottom of this file.
